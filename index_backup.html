@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Intro to JavaScript</h1>
+<p><strong>Logic and if Statements.</strong></p>
+
+<button 
+        type="button"
+        onclick="document.getElementById('demo').innerHTML = Date()">
+        Click me to display Date and Time. 
+</button>
+<button 
+        type="button"
+        onclick="myFunction()">
+        Click here for font change.
+</button>
+<p id="demo"></p>
+
+<script>
+function myFunction(){
+//    document.getElementById("demo").innerHTML = "Hello JavaScript!";
+    document.getElementById("demo").style.fontSize = "25px";
+    document.getElementById("demo").style.color = "red";
+    document.getElementById("demo").style.backgroundColor = "yellow";
+}
+</script>
+
+<script>
+function light(sw) {
+    var pic;
+    if (sw == 0) {
+        pic = "bulb_off.jpg"
+    } else {
+        pic = "bulb_on.jpg"
+    }
+    document.getElementById('myImage').src = pic;
+}
+</script>
+
+<img id="myImage" src="bulb_off.jpg" width="400" height="608">
+
+<p>
+<button type="button" onclick="light(1)">Light On</button>
+<button type="button" onclick="light(0)">Light Off</button>
+</p>
+
+<script src="processing-1.4.8.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+/*
+void setup()
+{
+  size(400,400);
+  background(125);
+  fill(255);
+  noLoop();
+  PFont fontA = loadFont("courier");
+  textFont(fontA, 14);  
+}
+
+void draw(){  
+  text("Hello Web!",20,20);
+  println("Hello ErrorLog!");
+}
+*/
+void setup(){
+    size(400,400);
+    //background(255,255,255);
+    //noStroke();
+    //smooth();
+    //noLoop();
+    background(255,0,0);
+    frameRate(30);
+    PFont fontA = loadFont("courier");
+    textFont(fontA, 14);  
+
+}
+draw = function(){
+    background(255,0,0);
+    text("Hello JS!", 100,100);
+    //drawButton();
+}
+
+
+
+var buttonX = 100;
+var buttonY = 150;
+var buttonW = 200;
+var buttonH = 100;
+
+var drawButton = function(){
+    // The button box
+    if(buttonIsPressed()){
+        fill(255, 0, 68); // start color
+    }else{
+        fill(0, 255, 68);
+    }
+    rect(buttonX, buttonY, buttonW, buttonH);  // the button
+
+    // The button text
+    if(buttonIsPressed()){
+        fill(0,255,68);
+    }else{
+        fill(255,0,68);
+    }
+    textSize(30);
+    text("Press me!", buttonX+35, buttonY+buttonH-35);
+};
+var buttonIsPressed = function(){
+    if(mousePressed 
+        && mouseY<buttonY+buttonH && mouseY>buttonY 
+        && mouseX>buttonX && mouseX<buttonX+buttonW){
+        return true;
+    }else{
+        return false;
+    }
+};
+
+var speedX = 2;
+var speedY = 2;
+
+var updateButton = function(){
+    if(buttonX+buttonW>400){
+        speedX = -1;
+    }
+    if(buttonX<0){
+        speedX = 1;
+    }
+    if(buttonY+buttonH>400){
+        speedY = -1;
+    }
+    if(buttonY<0){
+        speedY = 1;
+    }
+    buttonX += speedX;
+    buttonY += speedY;
+
+};
+
+
+draw = function() {
+    background(255,255,255);
+    updateButton();
+    drawButton();
+};
+</script>
+<canvas id="mycanvas"></canvas>
+</body>
+</html>

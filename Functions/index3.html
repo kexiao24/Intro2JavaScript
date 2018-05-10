@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .basicCanvas {
+            width : 49%;
+            display : inline-block
+        }
+
+        .winstonCanvas {
+            width : 49%;
+            display : inline-block
+        }
+    </style>
+
+</head>
+
+<body>
+<button 
+        type="button"
+        onclick="document.getElementById('demo').innerHTML = Date()">
+        Click me to display Date and Time. 
+</button>
+<p id="demo"></p>
+
+<h1>Functions</h1>
+<p><strong>Function for Winston</strong></p>
+
+
+<div class='container'>
+    <div id="Box1_Code">
+        <span class="basicCanvas">
+            <script src="../processing-1.4.8.js"></script>
+            <p><a href="file:///Users/kexiao/Documents/Code/JavaScript/Intro2JS/Functions/pong_winston.html">Click here for code (Pong Winston).</a></p>
+            <canvas data-processing-sources="pong_winston.pde"></canvas>
+        </span>
+        <span class="winstonCanvas">
+            <p><a href="file:///Users/kexiao/Documents/Code/JavaScript/Intro2JS/Functions/pong_winston2.html">Click here for code (Pong Winston).</a></p>
+            <canvas data-processing-sources="pong_winston2.pde"></canvas>
+        </span>
+    </div>
+</div>
+
+</body>
+</html>
