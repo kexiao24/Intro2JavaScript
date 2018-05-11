@@ -82,7 +82,6 @@ draw = function() {
     background(225,225,225);
     //speedY = y/10;
     paddleY = mouseY - 50;
-    println("Y is "+y+" | Direction_Y is "+directionY+" | Speed_Y is "+speedY);
 
     if(GameOn){
         Paddle(400-paddle_width/2, mouseY, paddle_width, paddle_length);
