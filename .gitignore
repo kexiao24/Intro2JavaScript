@@ -1,0 +1,12 @@
+# GitIgnore file for Intro2JavaScript
+
+# Ignore all .DS_Store files (they are so annoying)
+**.DS_Store
+
+# Ignore all pyc files in the tree
+**.pyc
+
+# Ignore all swp and swo files in the tree
+**.swp
+**.swo
+
