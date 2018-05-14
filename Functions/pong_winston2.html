@@ -4,7 +4,6 @@
 
 <h1>Function for Winston</h1>
 <pre>
-
 noStroke();
 
 var Winston = function(x, y, faceSize){
@@ -23,46 +22,96 @@ var Winston = function(x, y, faceSize){
 
 };
 
-var y = 25;
-var speedY = 10;
-var directionY = 1;
-var x = 25;
-var speedX = 10;
-var directionX = 1;
+var Paddle = function(x, y, width, length){
+    fill(0,0,0);
+    rect(x-width/2, y-length/2, width, length)
+}
 
+var x = 25;
+var y = 25;
+var speedX = 5;
+var speedY = 5;
+var directionX = 1;
+var directionY = 1;
+
+var paddle_length = 100;
+var paddle_width = 24;
 var paddleY = 150;
 var GameOn = true;
 
+var touchPaddle = function(){
+    var touchX = false;
+    var touchY_up = false;
+    var touchY_down = false;
+    var touchY_center = false;
+    if(x>400-50 && x<400+50){
+        touchX = true; 
+    }
+    if(y>=paddleY && y<=paddleY+100){
+        touchY_center = true;
+    }else if(y<=paddleY && y>=paddleY-25){
+        touchY_up = true;
+    }else if(y>=paddleY+100 && y<=paddleY+125){
+        touchY_down = true;
+    }
+    if(touchX){
+        if(touchY_center){
+            directionX = -1;
+            speedX += 2;
+            speedY += 2;
+        }else if(touchY_up){
+            directionX = -1;
+            directionY = -1;
+            speedY += 2;
+        }else if(touchY_down){
+            directionX = -1;
+            directionY = 1;
+            speedY += 2;
+        }
+    }
+}
+
 draw = function() {
     background(225,225,225);
-    speedY = y/10;
+    //speedY = y/10;
     paddleY = mouseY - 50;
 
     if(GameOn){
-        fill(0,0,0);
-        rect(375,paddleY,25,100);
+        Paddle(400-paddle_width/2, mouseY, paddle_width, paddle_length);
+        //rect(375,paddleY,25,100);
 
     
         //fill(66,66,66);
         //ellipse(x,y,50,50);
         Winston(x,y,50);
 
+        x = x + speedX*directionX;
+        if(x>400){
+            GameOn = false;
+        }
         y = y + speedY*directionY;
+
+
         if(y>400-50/2 && directionY>0){
             directionY = -1;
+            //speedY = random(2,10);
+            speedY = abs(y/random(20,40));
         }else if(y<50/2 && directionY<0){
             directionY = 1;
+            speedY = random(2,5);
         }
+        touchPaddle();
 
-        x = x + speedX*directionX;
-        if(x>400-50 && directionX>0){
+        /*
+        if(x>400-50 && x<400-25 && directionX>0){
             if(y>=paddleY && y<=paddleY+100){
                 directionX = -1;
-            }else{
-                GameOn = false;
             }
-        }else if(x<50/2 && directionX<0){
+        }else 
+        */
+        if(x<50/2 && directionX<0){
             directionX = 1;
+            speedX = random(5,15);
         }
     }else{
         textSize(50);
@@ -76,6 +125,7 @@ draw = function() {
         }
     }
 };
+
 </pre>
 
 </body>

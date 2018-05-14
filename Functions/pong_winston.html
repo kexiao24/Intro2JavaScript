@@ -40,8 +40,9 @@ draw = function() {
     fill(0,0,0);
     rect(375,paddleY,25,100);
 
-    fill(66,66,66);
-    ellipse(x,y,50,50);
+    //fill(66,66,66);
+    //ellipse(x,y,50,50);
+    Winston(x,y,50);
 
     y = y + speedY*directionY;
     if(y>400-50/2 && directionY>0){
@@ -51,13 +52,12 @@ draw = function() {
     }
 
     x = x + speedX*directionX;
-    //println("X is "+x);
-    println("directionX is "+directionX);
-    if(x>400-50 && directionX>0){
+    if(x>400-50 && x<400+50 && directionX>0){
         if(y>=paddleY && y<=paddleY+100){
             directionX = -1;
         }else{
-            //println("Game Over");
+            textSize(50);
+            text("Game Over!!!", 40, 200);
         }
     }else if(x<50/2 && directionX<0){
         directionX = 1;
